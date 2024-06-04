@@ -6,7 +6,7 @@ import numpy as np
 app=Flask(__name__)
 
 #load the pickle model
-with open('model (4).pkl','rb') as model_file:
+with open('model2.pkl','rb') as model_file:
     model=pickle.load(model_file)
 
 
@@ -19,12 +19,16 @@ def predict():
 
     # Get user input from the form 
     
-    crop_year = int(request.form['Crop Year'])
-    area = float(request.form['Area'])
-    temprature = float(request.form['Temprature'])
-    humidity = float(request.form['Humidity'])
-    pressure = float(request.form['Pressure'])
-
+    crop_names=request.form['Crop Names'].title()
+    if crop_names=="Maize":
+     crop_names=0
+    if crop_names=="Rice":
+     crop_names=1
+    if crop_names=="Sugarcane":
+     crop_names=2
+    elif crop_names=='Wheat':
+     crop_names=3
+    
 
     state_names=request.form['State Name'].title()
     if state_names=="Andaman and Nicobar Islands":
@@ -109,24 +113,19 @@ def predict():
     elif season_names=='Winter':
      season_names=5
     
-    crop_names=request.form['Crop Names'].title()
-    if crop_names=="Maize":
-     crop_names=0
-    if crop_names=="Rice":
-     crop_names=1
-    if crop_names=="Sugarcane":
-     crop_names=2
-    elif crop_names=='Wheat':
-     crop_names=3
+    area = float(request.form['Area'])
+    crop_year = int(request.form['Crop Year'])
+    temprature = float(request.form['Temprature'])
+    humidity = float(request.form['Humidity'])
+    pressure = float(request.form['Pressure'])
+
+
 
     # Make prediction
 
-    prediction = rfr_model.predict([[pressure,humidity,temprature,area,crop_year,season_names,state_names,crop_names]])
+    prediction = model.predict([[crop_names,state_names,season_names,area,crop_year,temprature,humidity,pressure]])
 
-
-    # result = "Customer will purchase the product" if prediction[0] == 1 else "Customer will not purchase the product"
-    # return render_template('index.html',pred_res=prediction[0])
-
+    return f"The predicted crop yield is: {prediction[0]}"
 
 
 if __name__=="__main__":

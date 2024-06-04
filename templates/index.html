@@ -3,13 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="static/style.css">
         <title>Production Prediction </title>
-        
+     
+    </head>
+
     <body>
         <h1>Prediction of Agricultural Crop Production </h1>
 
-    </head>
+    
         <form action="/predict" method="post" class="container">
 
             <label for="Crop Names">Crop Names:</label>
@@ -70,26 +72,27 @@
             </select><br><br>
 
             <label for="Area">Area:</label>
-            <input type="text" id="Area" name="Area" min="0" max="50000" step="1"><br><br>
+            <input type="number" id="Area" name="Area" min="0" max="50000" required><br><br>
 
             <label for="Crop Year"> Crop Year:</label>
-            <input type="text" id="Crop Year" name="Crop Year"><br><br>
+            <input type="number" id="Crop Year" name="Crop Year" min="1995" max="2030" required><br><br>
             
             <label for="Temprature">Temprature:</label>
-            <input type="text" id="Temprature" name="Temprature"><br><br>
+            <input type="number" id="Temprature" name="Temprature" required><br><br>
+
             <label for="Humidity">Humidity:</label>
-            <input type="text" id="Humidity" name="Humidity"><br><br>
+            <input type="number" id="Humidity" name="Humidity" required><br><br>
+  
             <label for="Pressure">Pressure:</label>
-            <input type="text" id="Pressure" name="Pressure"><br><br>
+            <input type="number" id="Pressure" name="Pressure" required><br><br>
 
             <button type="submit"> Submit </button><br><br>
 
         </form>
-        {% if (pred_res)==0 : %}
-        <h2>  Customer will not purchase the product  </h2>
-        {% elif (pred_res)==1 : %}
-        <h2>  Customer will purchase the product </h2>
-        {% endif %}
+        
+
+        <h2>            </h2>
+       
         
     </body>
 </html>
