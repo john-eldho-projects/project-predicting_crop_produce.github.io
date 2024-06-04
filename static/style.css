@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -42,4 +43,42 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+=======
+body{
+    align-items: center;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-style:normal;
+    
+    background-color: lightgreen;
+    /* background-image: ; */
+  
+}
+
+h1{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+button{
+    text-align: center;
+    border: none;
+    color: green;
+    cursor :pointer;
+    
+    
+}
+
+button:hover{
+    background-color: lightcoral;
+
+>>>>>>> 987298ad039a82ade46b3e90ec03b763f88e3749
 }
