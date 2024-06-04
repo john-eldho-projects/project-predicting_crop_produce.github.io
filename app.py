@@ -6,11 +6,8 @@ import numpy as np
 app=Flask(__name__)
 
 #load the pickle model
-<<<<<<< HEAD
-with open('modellr.pkl','rb') as model_file:
-=======
+
 with open('model2.pkl','rb') as model_file:
->>>>>>> 987298ad039a82ade46b3e90ec03b763f88e3749
     model=pickle.load(model_file)
 
 
@@ -36,7 +33,6 @@ def predict():
     scaled_hum=(humidity-66.467829)/16.363367
     scaled_pre=(pressure-1003.704828)/3.838096
     
-<<<<<<< HEAD
 
     
     if state_names=="Andamanandnicobarislands":
@@ -116,7 +112,6 @@ def predict():
     elif crop_names=='Wheat':
      crop_names=3
     
->>>>>>> 987298ad039a82ade46b3e90ec03b763f88e3749
 
     if season_names=="Autumn":
         season_names=0
@@ -151,22 +146,11 @@ def predict():
     
     #return render_template('prediction.html',pred_res=result)
 =======
-     season_names=5
+     
+
+
+
     
-    area = float(request.form['Area'])
-    crop_year = int(request.form['Crop Year'])
-    temprature = float(request.form['Temprature'])
-    humidity = float(request.form['Humidity'])
-    pressure = float(request.form['Pressure'])
-
-
-
-    # Make prediction
-
-    prediction = model.predict([[crop_names,state_names,season_names,area,crop_year,temprature,humidity,pressure]])
->>>>>>> 987298ad039a82ade46b3e90ec03b763f88e3749
-
-    return f"The predicted crop yield is: {prediction[0]}"
 
 
 if __name__=="__main__":
