@@ -6,7 +6,7 @@ import numpy as np
 app=Flask(__name__)
 
 #load the pickle model
-with open('model (4).pkl','rb') as model_file:
+with open('modellr.pkl','rb') as model_file:
     model=pickle.load(model_file)
 
 
@@ -14,118 +14,124 @@ with open('model (4).pkl','rb') as model_file:
 def home():
     return render_template('index.html')
 
-@app.route('/predict',methods=['POST'])
+@app.route('/prediction',methods=['GET','POST'])
 def predict():
-
-    # Get user input from the form 
+    if request.method=='POST':
+        crop_year = float(request.form['Crop Year'])
+        area = float(request.form['Area'])
+        temprature = float(request.form['Temprature'])
+        humidity = float(request.form['Humidity'])
+        pressure = float(request.form['Pressure'])
+        state_names=request.form['State Name'].title()
+        season_names=request.form['Season Name'].title()
+        crop_names=request.form['Crop Names'].title()
     
-    crop_year = int(request.form['Crop Year'])
-    area = float(request.form['Area'])
-    temprature = float(request.form['Temprature'])
-    humidity = float(request.form['Humidity'])
-    pressure = float(request.form['Pressure'])
+    scaled_cy=(crop_year-2005.675439)/5.069206
+    scaled_area=(area-23764.333872)/32899.371585
+    scaled_temp=(temprature-303.297517)/4.558251
+    scaled_hum=(humidity-66.467829)/16.363367
+    scaled_pre=(pressure-1003.704828)/3.838096
+    
 
+    
+    if state_names=="Andamanandnicobarislands":
+        state_names=0
+    elif state_names=="Andhra Pradesh":
+        state_names=1
+    elif state_names=="Arunachal Pradesh":
+        state_names=2
+    elif state_names=="Assam":
+        state_names=3
+    elif state_names=="Bihar":
+        state_names=4
+    elif state_names=="Chandigarh":
+        state_names=5
+    elif state_names=="Chhattisgarh":
+        state_names=6
+    elif state_names=="Dadraandnagarhaveli":
+        state_names=7
+    elif state_names=="Goa":
+        state_names=8
+    elif state_names=="Gujarat":
+        state_names=9
+    elif state_names=="Haryana":
+        state_names=10
+    elif state_names=="Himachal Pradesh":
+        state_names=11
+    elif state_names=="Jammuandkashmir":
+        state_names=12
+    elif state_names=="Jharkhand":
+        state_names=13
+    elif state_names=="Karnataka":
+        state_names=14
+    elif state_names=="Kerala":
+        state_names=15
+    elif state_names=="Madhya Pradesh":
+        state_names=16
+    elif state_names=="Maharashtra":
+        state_names=17
+    elif state_names=="Manipur":
+        state_names=18
+    elif state_names=="Meghalaya":
+        state_names=19
+    elif state_names=="Mizoram":
+        state_names=20
+    elif state_names=="Nagaland":
+        state_names=21
+    elif state_names=="Odisha":
+        state_names=22
+    elif state_names=="Puducherry":
+        state_names=23
+    elif state_names=="Punjab":
+        state_names=24
+    elif state_names=="Rajasthan":
+        state_names=25
+    elif state_names=="Sikkim":
+        state_names=26
+    elif state_names=="Tamil Nadu":
+        state_names=27
+    elif state_names=="Telangana":
+        state_names=28
+    elif state_names=="Tripura":
+        state_names=29
+    elif state_names=="Uttar Pradesh":
+        state_names=30
+    elif state_names=="Uttarakhand":
+        state_names=31
+    elif state_names=="West Bengal" :
+        state_names=32
 
-    state_names=request.form['State Name'].title()
-    if state_names=="Andaman and Nicobar Islands":
-     state_names=0
-    if state_names=="Andhra Pradesh":
-     state_names=1
-    if state_names=="Arunachal Pradesh":
-     state_names=2
-    if state_names=="Assam":
-     state_names=3
-    if state_names=="Bihar":
-     state_names=4
-    if state_names=="Chandigarh":
-     state_names=5
-    if state_names=="Chhattisgarh":
-     state_names=6
-    if state_names=="Dadra and Nagar Haveli":
-     state_names=7
-    if state_names=="Goa":
-     state_names=8
-    if state_names=="Gujarat":
-     state_names=9
-    if state_names=="Haryana":
-     state_names=10
-    if state_names=="Himachal Pradesh":
-     state_names=11
-    if state_names=="Jammu and Kashmir ":
-     state_names=12
-    if state_names=="Jharkhand":
-     state_names=13
-    if state_names=="Karnataka":
-     state_names=14
-    if state_names=="Kerala":
-     state_names=15
-    if state_names=="Madhya Pradesh":
-     state_names=16
-    if state_names=="Maharashtra":
-     state_names=17
-    if state_names=="Manipur":
-     state_names=18
-    if state_names=="Meghalaya":
-     state_names=19
-    if state_names=="Mizoram":
-     state_names=20
-    if state_names=="Nagaland":
-     state_names=21
-    if state_names=="Odisha":
-     state_names=22
-    if state_names=="Puducherry":
-     state_names=23
-    if state_names=="Punjab":
-     state_names=24
-    if state_names=="Rajasthan":
-     state_names=25
-    if state_names=="Sikkim":
-     state_names=26
-    if state_names=="Tamil Nadu":
-     state_names=27
-    if state_names=="Telangana":
-     state_names=28
-    if state_names=="Tripura":
-     state_names=29
-    if state_names=="Uttar Pradesh":
-     state_names=30
-    if state_names=="Uttarakhand":
-     state_names=31
-    elif state_names=='West Bengal':
-     state_names=32
-
-
-    season_names=request.form['Season Name'].title()
     if season_names=="Autumn":
-     season_names=0
-    if season_names=="Kharif":
-     season_names=1
-    if season_names=="Rabi":
-     season_names=2
-    if season_names=="Summer":
-     season_names=3
-    if season_names=="Whole Year":
-     season_names=4
+        season_names=0
+    elif season_names=="Kharif":
+        season_names=1
+    elif season_names=="Rabi":
+        season_names=2
+    elif season_names=="Summer":
+        season_names=3
+    elif season_names=="Whole Year":
+        season_names=4
     elif season_names=='Winter':
-     season_names=5
-    
-    crop_names=request.form['Crop Names'].title()
+        season_names=5
+
+
     if crop_names=="Maize":
      crop_names=0
-    if crop_names=="Rice":
+    elif crop_names=="Rice":
      crop_names=1
-    if crop_names=="Sugarcane":
+    elif crop_names=="Sugarcane":
      crop_names=2
     elif crop_names=='Wheat':
      crop_names=3
+        
 
     # Make prediction
-
-    prediction = rfr_model.predict([[pressure,humidity,temprature,area,crop_year,season_names,state_names,crop_names]])
-
-
-    # result = "Customer will purchase the product" if prediction[0] == 1 else "Customer will not purchase the product"
-    # return render_template('index.html',pred_res=prediction[0])
+    feature=np.array([[scaled_cy,scaled_area,scaled_temp,scaled_hum,scaled_pre,state_names,season_names,crop_names]])
+    print(feature)
+    #prediction = model.predict(feature)
+    #result=(prediction*99840.976746)+71988.387684
+    
+    #return render_template('prediction.html',pred_res=result)
 
 
 
