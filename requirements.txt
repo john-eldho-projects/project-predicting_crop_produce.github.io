@@ -1,8 +1,0 @@
-flask
-scikit-learn
-numpy
-<<<<<<< HEAD
-gunicorn
-=======
-gunicorn
->>>>>>> 987298ad039a82ade46b3e90ec03b763f88e3749
