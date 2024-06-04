@@ -101,7 +101,7 @@ def predict():
         state_names=31
     elif state_names=="West Bengal" :
         state_names=32
-=======
+
     crop_names=request.form['Crop Names'].title()
     if crop_names=="Maize":
      crop_names=0
@@ -124,7 +124,6 @@ def predict():
     elif season_names=="Whole Year":
         season_names=4
     elif season_names=='Winter':
-<<<<<<< HEAD
         season_names=5
 
 
@@ -141,11 +140,11 @@ def predict():
     # Make prediction
     feature=np.array([[scaled_cy,scaled_area,scaled_temp,scaled_hum,scaled_pre,state_names,season_names,crop_names]])
     print(feature)
-    #prediction = model.predict(feature)
-    #result=(prediction*99840.976746)+71988.387684
+    prediction = model.predict(feature)
+    result=(prediction*99840.976746)+71988.387684
     
-    #return render_template('prediction.html',pred_res=result)
-=======
+    return render_template('prediction.html',pred_res=result)
+
      
 
 
