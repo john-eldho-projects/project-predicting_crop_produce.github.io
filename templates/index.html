@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href=".../static/style.css">
+        <link rel="stylesheet" href="../static/style.css">
         <title>Production Prediction </title>
         
     <body>
         <h1>Prediction of Agricultural Crop Production </h1>
 
     </head>
-        <form action="/prediction" method="post" >
+        <form action="/predict" method="post" >
 
             <label for="Crop Names">Crop Names:</label>
             <select id="Crop Names" name="Crop Names">
@@ -88,8 +88,7 @@
             <button type="submit"> Submit </button><br><br>
 
         </form>
-
-        
+        <h2>Predicted Production (In Quintals) :</h2>
+        <h2>{{pred_res}}</h2>  
     </body>
-
 </html>
