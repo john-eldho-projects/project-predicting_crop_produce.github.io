@@ -1,5 +1,0 @@
-“.fileextension” filter=lfs diff=lfs merge=lfs -text
-“.pkl” filter=lfs diff=lfs merge=lfs -text
-*.pkl filter=lfs diff=lfs merge=lfs -text
-*,pkl filter=lfs diff=lfs merge=lfs -text
-model_dtr.pkl filter=lfs diff=lfs merge=lfs -text
