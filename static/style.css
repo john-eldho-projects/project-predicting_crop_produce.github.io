@@ -1,6 +1,6 @@
 body { 
 
-    background-image: url("pexels-photo-6216870.jpeg");
+    background-image: url("pic.jpg");
     font-family: Arial, sans-serif;
     font-weight:bold;
     margin: 0; 
@@ -19,7 +19,7 @@ body {
 
 h1 { 
     text-align: center; 
-    color: hsl(58, 95%, 15%); 
+    color: darkred; 
     margin-bottom: 20px; 
 } 
 
@@ -62,6 +62,6 @@ button:hover {
 
 h2 { 
     margin-top: 20px; 
-    color: #023f08; 
+    color:darkred; 
     text-align: center; 
 }
