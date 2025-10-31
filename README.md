@@ -1,1 +1,1 @@
-# Agri_Project
+# This project aims to predict crop yield using an agricultural dataset and regression algorithms. The model has been deployed using the Render application and the results can be obtained with the help of certain input features.
