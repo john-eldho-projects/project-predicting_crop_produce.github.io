@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/style.css">
+        <title>Production Prediction </title>
+        
+    <body>
+        <h1>Prediction of Agricultural Crop Production </h1>
+
+    </head>
+        <form action="/predict" method="post" >
+
+            <label for="Crop Names">Crop Names:</label>
+            <select id="Crop Names" name="Crop Names">
+                <option value="Maize">Maize</option>
+                <option value="Rice">Rice</option>
+                <option value="Sugarcane">Sugarcane</option>
+                <option value="Wheat">Wheat</option>
+                <!-- Add more options as needed -->
+            </select><br><br>
+
+            <label for="Area">Area:</label>
+            <input type="number" id="Area" name="Area"  ><br><br>
+
+            <label for="Crop Year"> Crop Year:</label>
+            <input type="number" id="Crop Year" name="Crop Year"><br><br>
+            
+            <label for="Temprature">Temprature:</label>
+            <input type="number" id="Temprature" name="Temprature"><br><br>
+
+            <label for="Humidity">Humidity:</label>
+            <input type="number" id="Humidity" name="Humidity"><br><br>
+
+            <label for="Pressure">Pressure:</label>
+            <input type="number" id="Pressure" name="Pressure"><br><br>
+
+            <label for="State Name">State Name:</label>
+            <select id="State Name" name="State Name">
+                <option value="Andamanandnicobarislands">Andaman and Nicobar Islands</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadraandnagarhaveli">Dadra and Nagar Haveli</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammuandkashmir">Jammu and Kashmir </option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+        
+            </select><br><br>
+
+            <label for="Season Name">Season Name:</label>
+            <select id="Season Name" name="Season Name">
+                <option value="Autumn">Autumn</option>
+                <option value="Kharif">Kharif</option>
+                <option value="Rabi">Rabi</option>
+                <option value="Summer">Summer</option>
+                <option value="Whole Year">Whole Year</option>
+                <option value="Winter">Winter</option>
+                <!-- Add more options as needed -->
+            </select><br><br>
+
+            <button type="submit"> Submit </button><br><br>
+
+        </form>
+        <h2>Predicted Production (In Quintals) :</h2>
+        <h2>{{pred_res}}</h2>  
+    </body>
+</html>
